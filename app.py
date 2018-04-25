@@ -25,6 +25,9 @@ def projectdata():
 def team():
     return render_template('team.html')
 
+@app.route('/past_movies')
+def past():
+    return render_template('past_movies.html')
 
 @app.route('/nonlinear', methods=['POST'])
 def predict_with_nonlinear():

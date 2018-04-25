@@ -1,22 +1,32 @@
 {% extends 'layout.html' %}
 
 {% block body %}
-  <div class="container">
+  <div class="container" style="text-align:center;">
     <h1>Linear Regression</h1>
     <form method="POST" action="{{ url_for('predict_with_linear')}}">
       <input type="text" name ="namequery" placeholder="budget">
-      <input type="text" name ="genrequery" placeholder="genre">
+      <select name="genrequery">
+          <option value="Action">Action</option>
+          <option value="Horror">Horror</option>
+          <option value="Mystery">Mystery</option>
+          <option value="Romance">Romance</option>
+      </select>
       <input type="text" name ="popquery" placeholder="popularity">
       <input type="text" name ="votequery" placeholder="vote count">
       <button type="submit" class="btn btn-primary">Predict</button>
     </form>
   </div>
 
-  <div class="container">
+  <div class="container" style="text-align:center;">
     <h1>Non-linear Regression</h1>
     <form method="POST" action="{{ url_for('predict_with_nonlinear')}}">
       <input type="text" name ="namequery" placeholder="budget">
-      <input type="text" name ="genrequery" placeholder="genre">
+      <select name="genrequery">
+          <option value="Action">Action</option>
+          <option value="Horror">Horror</option>
+          <option value="Mystery">Mystery</option>
+          <option value="Romance">Romance</option>
+      </select>
       <input type="text" name ="popquery" placeholder="popularity">
       <input type="text" name ="votequery" placeholder="vote count">
       <button type="submit" class="btn btn-primary">Predict</button>
