@@ -1,0 +1,38 @@
+{% extends 'layout.html' %}
+
+{% block body %}
+  <div class="container">
+    <h1>Linear Regression</h1>
+    <form method="POST" action="{{ url_for('predict_with_linear')}}">
+      <input type="text" name ="namequery" placeholder="budget">
+      <input type="text" name ="genrequery" placeholder="genre">
+      <input type="text" name ="popquery" placeholder="popularity">
+      <input type="text" name ="votequery" placeholder="vote count">
+      <button type="submit" class="btn btn-primary">Predict</button>
+    </form>
+  </div>
+
+  <div class="container">
+    <h1>Non-linear Regression</h1>
+    <form method="POST" action="{{ url_for('predict_with_nonlinear')}}">
+      <input type="text" name ="namequery" placeholder="budget">
+      <input type="text" name ="genrequery" placeholder="genre">
+      <input type="text" name ="popquery" placeholder="popularity">
+      <input type="text" name ="votequery" placeholder="vote count">
+      <button type="submit" class="btn btn-primary">Predict</button>
+    </form>
+  </div>
+
+    <!-- add any additional regression/prediction models we tried -->
+    <!-- <div class="container">
+      <h1>Non-linear Regression</h1>
+      <form method="POST" action="{{ url_for('predict_with_nonlinear')}}">
+        <input type="text" name ="namequery" placeholder="budget">
+        <input type="text" name ="genrequery" placeholder="genre">
+        <input type="text" name ="popquery" placeholder="popularity">
+        <input type="text" name ="votequery" placeholder="vote count">
+        <button type="submit" class="btn btn-primary">Predict</button>
+      </form>
+    </div> -->
+
+{% endblock %}
