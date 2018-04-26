@@ -1,6 +1,36 @@
 {% extends 'layout.html' %}
 {% block body %}
 
-  <h1>graphs and data here</h1>
 
-{% endblock %}
+</style>
+<h1 class="title">Journey to Find an adequate Movie Profit Prediction</h1>
+<h2 class="desc">The Countless Hours we spent to finally realize that this was harder than we thought.</h2>
+<img src="https://www.geek.com/wp-content/uploads/2017/12/the-room-tommy-625x352.jpg">
+
+<p><b>Aim</b>: Our goal was to discover and create an algorithm that could predict if a future movie
+    will be profitable. </p>
+
+<p><b>Data Source</b>: The main data source was a .csv file pulled from Kaggle. It had over 5000 movies.
+    Furthermore, we pulled more data from both online sources Movie Database and OMDB. We also
+    implemented the ability to add movies manually to the database.</p>
+
+<p><b>Features:</b> The original feature list were split in 2 CSV with the following features:
+
+    <section><h2>tmdb_5000_movies:</h2>
+        <br>budget,genres,homepage,id,keywords,original_language,original_title,overview,popularity,production_companies,
+        production_countries,release_date,revenue,runtime,spoken_languages,status,tagline,title,vote_average,vote_count</br>
+    </section>
+
+    <section><h2>tmdb_5000_credits:</h2>
+        <br>movie_id,title,cast (JSON list), crew(JSON list)</br>
+    </section>
+
+    <section>
+<p> We ended combining the 2 CSVs files into 1 CSV. The final feature list is as follows:
+<ul class="joeUl"><li>index</li><li>budget</li><li>genres</li><li>original_title</li><li>popularity</li><li>release_date</li><li>revenue</li><li>runtime</li><li>vote_average</li><li>vote_count</li><li>IMDB</li><li>rotten</li><li>metaC</li><li>cast</li><li>crew</li></ul></p>
+</section>
+
+<p><b>Output:</b> The final result would be an estimation of the approximate revenue of what this movie will bring in.
+
+
+    {% endblock %}
