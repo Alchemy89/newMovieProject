@@ -4,6 +4,7 @@ from flask import request
 import pandas as pd
 import numpy as np
 import scipy
+import NonLinear
 from sklearn.linear_model import LinearRegression
 app=Flask(__name__)
 
@@ -19,8 +20,12 @@ def predict():
 
 @app.route('/project_data')
 def projectdata():
-    return render_template('project_data.html')
-
+    
+    results = NonLinear.calculate()
+    
+    
+    return render_template('project_data.html', results=results)
+    
 @app.route('/team')
 def team():
     return render_template('team.html')
