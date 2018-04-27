@@ -26,7 +26,7 @@
 
     <section>
 <p> We ended combining the 2 CSVs files into 1 CSV. The final feature list is as follows:
-<ul><li>index</li><li>budget</li><li>genres</li><li>original_title</li><li>popularity</li><li>release_date</li><li>revenue</li><li>runtime</li><li>vote_average</li><li>vote_count</li><li>IMDB</li><li>rotten</li><li>metaC</li><li>cast</li><li>crew</li></ul></p>
+<ul class = "joeUl"><li class = "Cam">index</li><li class = "Cam">budget</li><li class = "Cam">genres</li><li class = "Cam">original_title</li><li class = "Cam">popularity</li><li class = "Cam">release_date</li><li class = "Cam">revenue</li><li class = "Cam">runtime</li><li class = "Cam">vote_average</li><li class = "Cam">vote_count</li><li class = "Cam">IMDB</li><li class = "Cam">rotten</li><li class = "Cam">metaC</li><li class = "Cam">cast</li><li class = "Cam">crew</li></ul></p>
 </section>
 
 <p><b>Output:</b> The final result would be an estimation of the approximate revenue of what this movie will bring in.
@@ -45,15 +45,12 @@
 
 <p><b>Linear Regression:</b> We were able to use what we learned in class to begin the process of linear regression. </p>
 
-<p> <form method="POST">
-
-    <section>
-        <h2>Please pick the independent variable to model:</h2>
-        <span class = em>Index, Budget, Popularity, Runtime, Voting Average, Vote Count, IMDB, Rotten, MetaC</span>
-        <br><input type="text" name ="indep" placeholder="Independent Variable">
-        <button type="submit" class="btn btn-primary">Submit</button>
+<p>
+<h2>Please pick the independent variable to model:</h2>
+<span class = em>Index, Budget, Popularity, Runtime, Voting Average, Vote Count, IMDB, Rotten, MetaC</span>
+<form method="POST"><br><input type="text" name ="indep" placeholder="Independent Variable">
+    <button type="submit" class="btn btn-primary">Submit</button>
 </form>
-</section>
 </p>
 
 <br>
@@ -61,6 +58,7 @@
 <div id="fucked" class="alert alert-fucked" role="alert" style="display:none;"></div>
 
 
-<img src="data:image/png;base64,{{ results }}" width="500">
+
+<img src="data:image/png;base64,{{ nonLinGraph }}" width="500">
 
     {% endblock %}

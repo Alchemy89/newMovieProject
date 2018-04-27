@@ -8,7 +8,7 @@ $(document).ready(function() {
                 indep : $('#indep').val(),
             },
             type : 'POST',
-            url : '/linear'
+            url : '/project_data'
         })
             .done(function(data) {
 

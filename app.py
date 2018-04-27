@@ -19,14 +19,15 @@ def predict():
     return render_template('predict.html')
 
 
-@app.route('/project_data')
+@app.route('/project_data', methods=['POST', 'GET'])
 def projectdata():
+    if request.method == 'POST':    
+        indep = request.form('indep')
     
-    indep = request.form('indep')
+        if indep:
+            Linear.simpleregress('indep')
     
-    if indep:
-        Linear.simpleregress('indep')
-    
+    nonLinGraph = NonLinear.calculate()
     return render_template('project_data.html', nonLinGraph=nonLinGraph)
     
 @app.route('/team')

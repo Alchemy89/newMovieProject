@@ -2,8 +2,12 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="78718634-6374-4837-8613-3209006b5038" name="Default" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app.py" beforeDir="false" afterPath="$PROJECT_DIR$/app.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/js/printRes.js" beforeDir="false" afterPath="$PROJECT_DIR$/static/js/printRes.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/Test.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/Test.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/layout.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/layout.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/templates/project_data.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/project_data.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/test.eps" beforeDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -29,8 +33,8 @@
       <file leaf-file-name="Test.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/templates/Test.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="525">
-              <caret line="136" lean-forward="true" selection-start-line="79" selection-start-column="1" selection-end-line="136" />
+            <state relative-caret-position="360">
+              <caret line="79" selection-start-line="79" selection-end-line="134" selection-end-column="67" />
             </state>
           </provider>
         </entry>
@@ -38,10 +42,34 @@
       <file leaf-file-name="project_data.html" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/templates/project_data.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state>
+            <state relative-caret-position="266">
+              <caret line="31" column="40" lean-forward="true" selection-start-line="31" selection-start-column="40" selection-end-line="31" selection-end-column="40" />
               <folding>
                 <element signature="n#src#0;n#img#1;n#!!top" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="layout.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/templates/layout.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="225">
+              <caret line="63" column="17" lean-forward="true" selection-start-line="63" selection-start-column="17" selection-end-line="63" selection-end-column="17" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="index.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/templates/index.html">
+          <provider selected="true" editor-type-id="text-editor" />
+        </entry>
+      </file>
+      <file leaf-file-name="predict.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/templates/predict.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="285">
+              <caret line="21" column="31" selection-start-line="21" selection-start-column="31" selection-end-line="21" selection-end-column="71" />
             </state>
           </provider>
         </entry>
@@ -67,6 +95,8 @@
         <option value="$PROJECT_DIR$/Test.html" />
         <option value="$PROJECT_DIR$/layout.html" />
         <option value="$PROJECT_DIR$/static/js/printRes.js" />
+        <option value="$PROJECT_DIR$/templates/Test.html" />
+        <option value="$PROJECT_DIR$/templates/layout.html" />
         <option value="$PROJECT_DIR$/templates/project_data.html" />
       </list>
     </option>
@@ -153,12 +183,12 @@
       <updated>1524717198381</updated>
       <workItem from="1524717199691" duration="27709000" />
       <workItem from="1524861193348" duration="447000" />
-      <workItem from="1524861790768" duration="670000" />
+      <workItem from="1524861790768" duration="2610000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="28826000" />
+    <option name="totallyTimeSpent" value="30766000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="-1" width="1600" height="874" extended-state="6" />
@@ -221,6 +251,16 @@
     <entry file="file://$PROJECT_DIR$/project_data.html" />
     <entry file="file://$PROJECT_DIR$/Test.html" />
     <entry file="file://$PROJECT_DIR$/layout.html" />
+    <entry file="file://$PROJECT_DIR$/templates/Test.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="360">
+          <caret line="79" selection-start-line="79" selection-end-line="134" selection-end-column="67" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/index.html">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
     <entry file="file://$PROJECT_DIR$/static/js/printRes.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="45">
@@ -228,16 +268,24 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/templates/Test.html">
+    <entry file="file://$PROJECT_DIR$/templates/layout.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="525">
-          <caret line="136" lean-forward="true" selection-start-line="79" selection-start-column="1" selection-end-line="136" />
+        <state relative-caret-position="225">
+          <caret line="63" column="17" lean-forward="true" selection-start-line="63" selection-start-column="17" selection-end-line="63" selection-end-column="17" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/predict.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="285">
+          <caret line="21" column="31" selection-start-line="21" selection-start-column="31" selection-end-line="21" selection-end-column="71" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/templates/project_data.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state>
+        <state relative-caret-position="266">
+          <caret line="31" column="40" lean-forward="true" selection-start-line="31" selection-start-column="40" selection-end-line="31" selection-end-column="40" />
           <folding>
             <element signature="n#src#0;n#img#1;n#!!top" expanded="true" />
           </folding>
