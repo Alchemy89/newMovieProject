@@ -5,6 +5,7 @@ import pandas as pd
 import numpy as np
 import scipy
 import NonLinear
+import Linear
 from sklearn.linear_model import LinearRegression
 app=Flask(__name__)
 
@@ -21,10 +22,12 @@ def predict():
 @app.route('/project_data')
 def projectdata():
     
-    results = NonLinear.calculate()
+    indep = request.form('indep')
     
+    if indep:
+        Linear.simpleregress('indep')
     
-    return render_template('project_data.html', results=results)
+    return render_template('project_data.html', nonLinGraph=nonLinGraph)
     
 @app.route('/team')
 def team():

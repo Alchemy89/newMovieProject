@@ -106,6 +106,36 @@
 
     <p><b>Output:</b> The final result would be an estimation of the approximate revenue of what this movie will bring in.
 
+    <h1 class="title">What Happened?</h1>
+
+    <p>After finding a data source to work with, we went to work cleaning the data. We parsed some data such as eliminating columns
+    of JSON. We eliminated outliers or rows where there was blank fields or fields where there were extreme outliers. We also
+    removed fields that had 0 budget in making movies.</p>
+
+    <p>We split the responsibilities between building the linear prediction algorithm and deployment and frontend design. Jamahl and Joseph
+    worked on seeing if they could manipulate data using Python. Joseph has some experience with databases and data analysis but no experience
+    with Python. Jamahl had little to no experience with Python and databases. Jae had a lot of experience with Web Frameworks, Front end design
+    and application deployment.</p>
+
+
+    <p><b>Linear Regression:</b> We were able to use what we learned in class to begin the process of linear regression. </p>
+
+    <p> <form method="POST">
+
+        <section>
+        <h2>Please pick the independent variable to model:</h2>
+        <span class = em>Index, Budget, Popularity, Runtime, Voting Average, Vote Count, IMDB, Rotten, MetaC</span>
+        <br><input type="text" name ="indep" placeholder="Independent Variable">
+            <button type="submit" class="btn btn-primary">Submit</button>
+        </form>
+        </section>
+    </p>
+
+    <br>
+    <div id="display" class="alert alert-success" role="alert" style="display:none;"></div>
+    <div id="fucked" class="alert alert-fucked" role="alert" style="display:none;"></div>
+
+    <img src="data:image/png;base64,{{ nonLinGraph }}" width="500">
 
 
 </div>
