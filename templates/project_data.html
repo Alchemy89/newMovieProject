@@ -45,20 +45,24 @@
 
 <p><b>Linear Regression:</b> We were able to use what we learned in class to begin the process of linear regression. </p>
 
+<h2>Correlation</h2>
+{{corr | safe}}
+
+<br>
+
+<img src="../static/img/analysis.png" width="1000" height="1000">
+
 <p>
 <h2>Please pick the independent variable to model:</h2>
 <span class = em>Index, Budget, Popularity, Runtime, Voting Average, Vote Count, IMDB, Rotten, MetaC</span>
-<form method="POST"><br><input type="text" name ="indep" placeholder="Independent Variable">
+<form method="POST"><br><input type="text" id ="indep" placeholder="Independent Variable">
     <button type="submit" class="btn btn-primary">Submit</button>
 </form>
 </p>
 
-<br>
-<div id="display" class="alert alert-success" role="alert" style="display:none;"></div>
-<div id="fucked" class="alert alert-fucked" role="alert" style="display:none;"></div>
-
-
+<div id="display"  style="display:none;"></div>
+<div id="fucked" style="display:none;"></div>
 
 <img src="data:image/png;base64,{{ nonLinGraph }}" width="500">
 
-    {% endblock %}
+{% endblock %}

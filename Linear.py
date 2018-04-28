@@ -11,13 +11,41 @@ import seaborn as sns
 from pandas.plotting import scatter_matrix as scm
 from numpy import *
 from scipy import stats
+from numpy import set_printoptions
+from io import BytesIO
+import base64
 
 
-
-
-
-def simpleregress(indep):
+def correlate():
     
+    data = pd.read_csv('./tmdb_5000.csv')
+
+    
+    #Select the Columns that ONLY Use NUMBERS
+    numdtypes = ['int16', 'int32', 'int64', 'float16', 'float32', 'float64']
+    numdata = data.select_dtypes(include=numdtypes)
+    
+    #Remove the id column. It's useless for us
+    #numdata = numdata.drop(['id'], axis=1)
+    
+    #print all the columns that have numerical data
+    
+    #Command Prompt asking for input
+    #columnDep = input("Please type Dependent Variable:")
+    
+    #print the p-value correlation
+    corr = numdata[numdata.columns[0:]].corr()['revenue']
+    corr = corr.drop(['revenue'])
+    
+    #print(corr.loc[corr.gt(0.5)])
+    
+    return corr;
+    
+    
+#UNCOMMENT TO RUN
+
+
+def modelSummary(indep):
     
 
     data = pd.read_csv('./tmdb_5000.csv')
@@ -30,42 +58,49 @@ def simpleregress(indep):
     #Remove the id column. It's useless for us
     #numdata = numdata.drop(['id'], axis=1)
     
-    #print all the columns that have numerical data
-    print(list(numdata))
-    
-    #Command Prompt asking for input
-    #columnDep = input("Please type Dependent Variable:")
-    
-    #print the p-value correlation
-    corr = numdata[numdata.columns[0:]].corr()['revenue']
-    corr = corr.drop(['revenue'])
-    
-    print(corr.loc[corr.gt(0.5)])
-    #print(corr.gt(0.5))
+    plt.figure()
+    sns.pairplot(numdata)
+    plt.savefig('analysis.png')
     
     
-    #print the scatter-matrix for all the columns
-    
-    scm(numdata)
-    #plt.savefig('test.eps', format='eps', dpi=1000)
     
     #Command Prompt asking for input
     columnInd = str(indep)
     
+    x = numdata[columnInd]
+    y = numdata['revenue']
+    
+    model = sm.OLS(y, x).fit()
+    return model.summary()
+
+modelSummary('budget')
+
+
+def plotChart(indep): 
+    data = pd.read_csv('./tmdb_5000.csv')
+
+    
+    #Select the Columns that ONLY Use NUMBERS
+    numdtypes = ['int16', 'int32', 'int64', 'float16', 'float32', 'float64']
+    numdata = data.select_dtypes(include=numdtypes)
+    
+    #Remove the id column. It's useless for us
+    #numdata = numdata.drop(['id'], axis=1)
+    columnInd = str(indep)
+    
     
     #Run Linear Analysis
+    plt.figure()
     x = numdata[columnInd]
     y = numdata['revenue']
     numdata.plot.scatter(columnInd, 'revenue')
-    plt.show()
     
-    
-    model = sm.OLS(y, x).fit()
-    print(model.summary())
-
-#UNCOMMENT TO RUN
-#simpleregressNum()
-
+    figfile = BytesIO()
+    plt.savefig(figfile, format='png')
+    figfile.seek(0)  # rewind to beginning of file
+        
+    figdata_png = base64.b64encode(figfile.getvalue())
+    return figdata_png
 
 
 

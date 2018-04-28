@@ -5,7 +5,7 @@ $(document).ready(function() {
 
         $.ajax({
             data : {
-                indep : $('#indep').val(),
+                indep : $('#indep').val()
             },
             type : 'POST',
             url : '/project_data'
@@ -13,16 +13,40 @@ $(document).ready(function() {
             .done(function(data) {
 
                 if (data.error) {
-                    $('#errorAlert').text(data.error).show();
-                    $('#successAlert').hide();
+                    $('#fucked').text(data.error).show();
+                    $('#display').hide();
                 }
                 else {
-                    $('#successAlert').text(data.name).show();
-                    $('#errorAlert').hide();
+                    $('#display').html('<img src="data:image/png;base64,' + data + '" />').show();
+                    $('#fucked').hide();
+                }
+
+            });
+        
+         $.ajax({
+            data : {
+                budget : $('#namequery').val(),
+                genre : $('#genrequery').val(),
+                popular : $('#popquery').val(),
+                vote : $('#votequery').val()
+            },
+            type : 'POST',
+            url : '/predict'
+        })
+          .done(function(data) {
+
+                if (data.error) {
+                    $('#fuckedLin').text(data.error).show();
+                    $('#displayLin').hide();
+                }
+                else {
+                    $('#displayLin').text(data.answer).show();
+                    $('#fuckedLin').hide();
                 }
 
             });
 
+        
         event.preventDefault();
 
     });

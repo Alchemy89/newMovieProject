@@ -1,4 +1,4 @@
-from flask import Flask, render_template, url_for, request
+from flask import Flask, render_template, url_for, request, jsonify
 from flask_bootstrap import Bootstrap
 from flask import request
 import pandas as pd
@@ -21,14 +21,18 @@ def predict():
 
 @app.route('/project_data', methods=['POST', 'GET'])
 def projectdata():
-    if request.method == 'POST':    
-        indep = request.form('indep')
-    
-        if indep:
-            Linear.simpleregress('indep')
     
     nonLinGraph = NonLinear.calculate()
-    return render_template('project_data.html', nonLinGraph=nonLinGraph)
+    correlate = Linear.correlate().to_frame().to_html()
+    
+    indep = request.form.get('indep')
+    if indep:
+        LinGraph = Linear.plotChart(str(indep))
+        return LinGraph
+    else:
+        return render_template('project_data.html', nonLinGraph=nonLinGraph, corr=correlate)
+
+    
     
 @app.route('/team')
 def team():
@@ -46,11 +50,14 @@ def predict_with_nonlinear():
 @app.route('/predict', methods=['POST'])
 def predict_with_linear():
     if request.method == 'POST':
-        budget = request.form.get('namequery')
-        genre = request.form.get('genrequery')
-        popularity = request.form.get('popquery')
-        vote_cnt = request.form.get('votequery')
+        budget = request.form.get('budget')
+        genre = request.form.get('genre')
+        popularity = request.form.get('popular')
+        vote_cnt = request.form.get('vote')
 
+        print(budget)
+        print(popularity)
+        print(vote_cnt)
         dataTrain = pd.read_csv('./tmdb_5000_train.csv')
         dataTest = pd.read_csv('./tmdb_5000_test.csv')
         x_train = dataTrain[['budget', 'popularity', 'vote_count']].values.reshape(-1,3)
@@ -60,18 +67,16 @@ def predict_with_linear():
 
         input = {'budget': float(budget), 'popularity': float(popularity), 'vote_count': float(vote_cnt)}
         X = pd.DataFrame.from_dict(input,orient='index')
-        print(X)
         X = X.values.reshape(-1, 3)
 
         answer = model.predict(X)
-
-
-    return '''<h1>This is budget: {}</h1>
-                  <h1>This is genre: {}</h1>
-                  <h1>This is popularity: {}</h1>
-                  <h1>This is vote_cnt: {}</h1>
-                  <h1>Prediction is: {}</h1>
-                  '''.format(budget, genre, popularity, vote_cnt, (float(answer)))
+        return jsonify({'answer' : answer[0]})
+    #return '''<h1>This is budget: {}</h1>
+    #              <h1>This is genre: {}</h1>
+    #              <h1>This is popularity: {}</h1>
+    #              <h1>This is vote_cnt: {}</h1>
+    #              <h1>Prediction is: {}</h1>
+    #              '''.format(budget, genre, popularity, vote_cnt, (float(answer)))
 
 
 
