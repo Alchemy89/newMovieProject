@@ -46,8 +46,6 @@ def projectdata():
     else:
         return render_template('project_data.html', nonLinGraph=nonLinGraph, corr=correlate)
 
-
-
 @app.route('/team')
 def team():
     return render_template('team.html')
@@ -55,8 +53,6 @@ def team():
 @app.route('/past_movies')
 def past():
     return render_template('past_movies.html')
-
-
 
 class RegisterForm(Form):
     name = StringField('Name', [validators.length(min=1, max=50)])
@@ -67,6 +63,44 @@ class RegisterForm(Form):
         validators.EqualTo('confirm', message="Passwords do not match"),
         ])
     confirm = PasswordField('Confirm Password')
+
+# User login
+@app.route('/login', methods=['GET', 'POST'])
+def login():
+    if request.method == 'POST':
+        # Get Form Fields
+        username = request.form['username']
+        password_candidate = request.form['password']
+
+        # Create cursor
+        cur = mysql.connection.cursor()
+
+        # Get user by username
+        result = cur.execute("SELECT * FROM users WHERE username = %s", [username])
+
+        if result > 0:
+            # Get stored hash
+            data = cur.fetchone()
+            password = data['password']
+
+            # Compare Passwords
+            if sha256_crypt.verify(password_candidate, password):
+                # Passed
+                session['logged_in'] = True
+                session['username'] = username
+
+                flash('You are now logged in', 'success')
+                return redirect(url_for('index'))
+            else:
+                error = 'Invalid login'
+                return render_template('login.html', error=error)
+            # Close connection
+            cur.close()
+        else:
+            error = 'Username not found'
+            return render_template('login.html', error=error)
+
+    return render_template('login.html')
 
 @app.route('/register', methods=['GET', 'POST'])
 def register():
@@ -116,7 +150,6 @@ def predict_with_linear():
         y_train = dataTrain['revenue']
         ols = LinearRegression()
         model = ols.fit(x_train, y_train)
-
 
         input = {'budget': float(budget), 'popularity': float(popularity), 'vote_count': float(vote_cnt)}
         X = pd.DataFrame.from_dict(input,orient='index')
