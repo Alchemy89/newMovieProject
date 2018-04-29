@@ -24,15 +24,16 @@ def projectdata():
     
     nonLinGraph = NonLinear.sendgraph()
     correlate = Linear.correlate().to_frame().to_html()
+    LinGraph = Linear.multiRegChart()
+    LinPValue = Linear.multiRegPValue().to_html(index=False)
     
     indep = request.form.get('indep')
     if indep:
         LinGraph = Linear.plotChart(str(indep))
         return LinGraph
     else:
-        return render_template('project_data.html', nonLinGraph=nonLinGraph, corr=correlate)
+        return render_template('project_data.html', nonLinGraph=nonLinGraph, corr=correlate, LinGraph = LinGraph, pVal = LinPValue)
 
-    
     
 @app.route('/team')
 def team():

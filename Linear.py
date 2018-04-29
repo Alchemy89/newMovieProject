@@ -3,6 +3,7 @@
 import pandas as pd
 import statsmodels.api as sm
 import scipy.stats as scp
+import numpy as np
 from sklearn.linear_model import LinearRegression
 from sklearn.linear_model import LogisticRegression
 from sklearn.feature_selection import RFE
@@ -58,10 +59,6 @@ def modelSummary(indep):
     #Remove the id column. It's useless for us
     #numdata = numdata.drop(['id'], axis=1)
     
-    plt.figure()
-    sns.pairplot(numdata)
-    plt.savefig('analysis.png')
-    
     
     
     #Command Prompt asking for input
@@ -73,7 +70,7 @@ def modelSummary(indep):
     model = sm.OLS(y, x).fit()
     return model.summary()
 
-modelSummary('budget')
+#modelSummary('budget')
 
 
 def plotChart(indep): 
@@ -105,11 +102,9 @@ def plotChart(indep):
 
 
 
-def multipleregress():
+
+def multiRegChart():
     
-    #IDEAL IS FOR THE INDEPENDENT VARIABLE TO BE CORRELATED WITH THE DEPENDENT VARIABLE BUT NOT 
-    #WITH EACH OTHER
-    #Select the Columns that ONLY Use NUMBERS
     dataTrain = pd.read_csv('./tmdb_5000_train.csv')
     dataTest = pd.read_csv('./tmdb_5000_test.csv')    
     
@@ -126,29 +121,30 @@ def multipleregress():
     dataTest = pd.read_csv('./tmdb_5000_test.csv', usecols=['budget','popularity','runtime','vote_average','vote_count','IMDB','rotten','metaC','revenue'])    
     
     
-    names = dataTrain.columns
-    array = dataTrain.values
-    X = array[:,0:8]
-    Y = array[:,2]
-    # feature extraction
-    model = LinearRegression()
-    rfe = RFE(model, 4)
-    fit = rfe.fit(X, Y)
-    print(fit.n_features_) 
-    print(fit.support_)  
-    print(fit.ranking_)  
-    ranks = fit.support_
-    fields = np.where(ranks == True)
-    ranks = list()
-    for ind in np.nditer(fields):
-        ranks.append(names[ind]) 
     
-    print(ranks)
+
+    y_predicted = model.predict(x_train)
     
-    x_train = dataTrain[['rotten', 'IMDB', 'vote_average']].values.reshape(-1,3)    
+    plt.figure()
+    plt.scatter(y_train, y_predicted)
+    plt.plot(y_train,y_predicted,'o')
+    figfile = BytesIO()
+    plt.savefig(figfile, format='png')
+    figfile.seek(0)  # rewind to beginning of file
+        
+    figdata_png = base64.b64encode(figfile.getvalue())
+    return figdata_png
+
+
+def multiRegPValue():
+  
+    dataTrain = pd.read_csv('./tmdb_5000_train.csv')
+    dataTest = pd.read_csv('./tmdb_5000_test.csv')    
+    
+    x_train = dataTrain[['budget', 'popularity', 'vote_count']].values.reshape(-1,3)
     y_train = dataTrain['revenue']
     
-    x_test = dataTest[['rotten', 'IMDB', 'vote_average']].values.reshape(-1,3)
+    x_test = dataTest[['budget', 'popularity', 'vote_count']].values.reshape(-1,3)
     y_test = dataTest['revenue']
 
     ols = LinearRegression()
@@ -178,16 +174,5 @@ def multipleregress():
 
     myDF3 = pd.DataFrame()  
     myDF3["Coefficients"],myDF3["Standard Errors"],myDF3["t values"],myDF3["Probabilites"] = [params,sd_b,ts_b,p_values]
-    print(myDF3)
-
-    y_predicted = model.predict(x_train)
     
-    plt.scatter(y_train, y_predicted)
-    plt.plot(y_train,y_predicted,'o')
-    plt.show()
-    
-    
-    #print(model.predict(x_test)[0:10])
-#UNCOMMENT TO RUN
-#multipleregress()
-
+    return myDF3

@@ -45,6 +45,11 @@
 
 <p><b>Linear Regression:</b> We were able to use what we learned in class to begin the process of linear regression. </p>
 
+<p>We also took a slight detour where created a script that added all the reviews for all 5000 movies. The review sources
+    are from Rotten Tomatoes, MetaCritic and IMDB. We did this to find if there was a relationship between the reviews and movie success.
+Unfortunately, the work was for naught as we found no correlation between the reviews and movie success. </p>
+
+
 <h2>Correlation</h2>
 {{corr | safe}}
 
@@ -62,6 +67,35 @@
 
 <div id="display"  style="display:none;"></div>
 <div id="fucked" style="display:none;"></div>
+
+
+<p>Our conclusion from this is that there were 3 obscure columns that correlated with higher revenue in movies:
+    <ul class="joeUL"> <li class="Cam">Budget</li><li class="Cam">Popularity</li><li class="Cam">Vote Count</li></ul></p>
+
+<p><b>Budget:</b> This is pretty self explanatory and somewhat logical as the higher the budget then there is a correlation that there is
+higher return.</p>
+
+<p><b>Popularity:</b> This metric is actually measured by the TMDB (The Movie Database website). So on their website, they measure
+the number of votes for day, number of views for the day, number of users mark the movie as "favorite" for the day, number of users
+who added it to their "watchlist" for the day, release date, number of total votes and the previous days score.</p>
+
+<p><b>Vote Count:</b> The vote count means there is a correlation between the vote count on the TMDB web page and the predicted
+movie success.</p>
+
+
+<p>After analysis, we found that the P-Value of each of these were not adequate for analysis. The final graph for the Expected vs Calculated
+Results also showed a lack of correlation. </p>
+<br>
+{{pVal | safe}}
+<img src="data:image/png;base64,{{ LinGraph }}" width="500">
+
+<p>The next step is to search out for a NonLinear Relationship. We looked for a NonLinear solution hoping for a better result.</p>
+
+<p><b>NonLinear Approach</b> The NonLinear approach we referenced a website called apmonitor which had an example of
+    <a href="http://apmonitor.com/me575/index.php/Main/NonlinearRegression">NonLinear Regression.</a></p>
+
+
+
 
 <img src="data:image/png;base64,{{ nonLinGraph }}" width="500">
 
