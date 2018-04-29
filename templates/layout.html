@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+    <meta charset="utf-8">
+    <title>Movie Algorithm</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link href="https://fonts.googleapis.com/css?family=Cormorant+Garamond|Tajawal" rel="stylesheet">
+    <style>
+
+        .column {
+            float: left;
+            width: 33.33%;
+            text-align: center;
+        }
+
+        /* Clear floats after the columns */
+        .row:after {
+            content: "";
+            display: table;
+            clear: both;
+        }
+
+        .title {
+
+            font-family: 'Tajawal', serif;
+            font-style: normal;
+            font-weight: 700;
+            font-size: 34px;
+            margin-bottom: 0;
+        }
+
+        .desc {
+            font-family: 'Cormorant Garamond', serif;
+            font-weight: 400;
+            font-style: italic;
+            font-size: 22px;
+            line-height: 1.00;
+            letter-spacing: -.004em;
+            margin-top: 3px;
+
+        }
+
+        h2 {
+            font-size: 15px;
+            font-style: normal;
+            font-weight: bold;
+        }
+
+
+        p {
+            display: block;
+            font-size: 18px;
+            line-height: 1.58;
+            letter-spacing: -.004em;
+            margin:30px 30px 0 0;
+        }
+
+        .em {
+            font-style: italic;
+
+        }
+
+        section {
+            font-size: 16px;
+            margin:0px 0px 0px 20px;
+        }
+
+        .joeUl {
+            -webkit-columns: 4;
+            columns: 4;
+            -moz-columns: 4;
+            list-style-type: none;
+        }
+
+        li.Cam:before {
+            content: url({{url_for('static', filename='img/cambullet.png')}});font-size: 10px;
+        }
+
+    </style>
+</head>
+<body>
+{% include 'partials/_messages.html' %}
+{% include 'partials/_navbar.html' %}
+<div class="container">
+    {% block body %}{% endblock %}
+</div>
+<!-- jQuery library -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="{{ url_for('static', filename='js/printRes.js') }}"></script>
+<!-- Latest compiled JavaScript -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</body>
+</html>

@@ -1,0 +1,145 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Movie Algorithm</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link href="https://fonts.googleapis.com/css?family=Cormorant+Garamond|Tajawal" rel="stylesheet">
+    <style>
+
+        .column {
+            float: left;
+            width: 33.33%;
+            text-align: center;
+        }
+
+        /* Clear floats after the columns */
+        .row:after {
+            content: "";
+            display: table;
+            clear: both;
+        }
+
+        .title {
+
+            font-family: 'Tajawal', serif;
+            font-style: normal;
+            font-weight: 700;
+            font-size: 34px;
+            margin-bottom: 0;
+        }
+
+        .desc {
+            font-family: 'Cormorant Garamond', serif;
+            font-weight: 400;
+            font-style: italic;
+            font-size: 22px;
+            line-height: 1.00;
+            letter-spacing: -.004em;
+            margin-top: 3px;
+
+        }
+
+        h2 {
+            font-size: 15px;
+            font-style: normal;
+            font-weight: bold;
+        }
+
+
+        p {
+            display: block;
+            font-size: 18px;
+            line-height: 1.58;
+            letter-spacing: -.004em;
+            margin:30px 30px 0 0;
+        }
+
+        .em {
+            font-style: italic;
+
+        }
+
+        section {
+            font-size: 16px;
+            margin:0px 0px 0px 20px;
+        }
+
+        ul {
+            -webkit-columns: 4;
+            columns: 4;
+            -moz-columns: 4;
+            list-style-type: none;
+        }
+        li:before {content: url('./img/cambullet.png');font-size: 10px;}
+
+    </style>
+</head>
+<div class="container">
+
+    <h1 class="title">Journey to Find an adequate Movie Profit Prediction</h1>
+    <h2 class="desc">The Countless Hours we spent to finally realize that this was harder than we thought.</h2>
+    <img src="https://www.geek.com/wp-content/uploads/2017/12/the-room-tommy-625x352.jpg">
+
+    <p><b>Aim</b>: Our goal was to discover and create an algorithm that could predict if a future movie
+    will be profitable. </p>
+
+    <p><b>Data Source</b>: The main data source was a .csv file pulled from Kaggle. It had over 5000 movies.
+        Furthermore, we pulled more data from both online sources Movie Database and OMDB. We also
+        implemented the ability to add movies manually to the database.</p>
+
+    <p><b>Features:</b> The original feature list were split in 2 CSV with the following features:
+
+    <section><h2>tmdb_5000_movies:</h2>
+        <br>budget,genres,homepage,id,keywords,original_language,original_title,overview,popularity,production_companies,
+        production_countries,release_date,revenue,runtime,spoken_languages,status,tagline,title,vote_average,vote_count</br>
+    </section>
+
+    <section><h2>tmdb_5000_credits:</h2>
+        <br>movie_id,title,cast (JSON list), crew(JSON list)</br>
+    </section>
+
+    <section>
+    <p> We ended combining the 2 CSVs files into 1 CSV. The final feature list is as follows:
+    <ul><li>index</li><li>budget</li><li>genres</li><li>original_title</li><li>popularity</li><li>release_date</li><li>revenue</li><li>runtime</li><li>vote_average</li><li>vote_count</li><li>IMDB</li><li>rotten</li><li>metaC</li><li>cast</li><li>crew</li></ul></p>
+    </section>
+
+    <p><b>Output:</b> The final result would be an estimation of the approximate revenue of what this movie will bring in.
+
+    <h1 class="title">What Happened?</h1>
+
+    <p>After finding a data source to work with, we went to work cleaning the data. We parsed some data such as eliminating columns
+    of JSON. We eliminated outliers or rows where there was blank fields or fields where there were extreme outliers. We also
+    removed fields that had 0 budget in making movies.</p>
+
+    <p>We split the responsibilities between building the linear prediction algorithm and deployment and frontend design. Jamahl and Joseph
+    worked on seeing if they could manipulate data using Python. Joseph has some experience with databases and data analysis but no experience
+    with Python. Jamahl had little to no experience with Python and databases. Jae had a lot of experience with Web Frameworks, Front end design
+    and application deployment.</p>
+
+
+    <p><b>Linear Regression:</b> We were able to use what we learned in class to begin the process of linear regression. </p>
+
+    <p>
+    <h2>Please pick the independent variable to model:</h2>
+        <span class = em>Index, Budget, Popularity, Runtime, Voting Average, Vote Count, IMDB, Rotten, MetaC</span>
+        <form method="POST"><br><input type="text" name ="indep" placeholder="Independent Variable">
+            <button type="submit" class="btn btn-primary">Submit</button>
+        </form>
+    </p>
+
+    <br>
+    <div id="display" class="alert alert-success" role="alert" style="display:none;"></div>
+    <div id="fucked" class="alert alert-fucked" role="alert" style="display:none;"></div>
+
+    <img src="data:image/png;base64,{{ nonLinGraph }}" width="500">
+
+
+</div>
+<!-- jQuery library -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<!-- Latest compiled JavaScript -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+
+</html>

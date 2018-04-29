@@ -1,0 +1,68 @@
+{% extends 'layout.html' %}
+{% block body %}
+
+
+<h1 class="title">Journey to Find an adequate Movie Profit Prediction</h1>
+<h2 class="desc">The Countless Hours we spent to finally realize that this was harder than we thought.</h2>
+<img src="https://www.geek.com/wp-content/uploads/2017/12/the-room-tommy-625x352.jpg">
+
+<p><b>Aim</b>: Our goal was to discover and create an algorithm that could predict if a future movie
+    will be profitable. </p>
+
+<p><b>Data Source</b>: The main data source was a .csv file pulled from Kaggle. It had over 5000 movies.
+    Furthermore, we pulled more data from both online sources Movie Database and OMDB. We also
+    implemented the ability to add movies manually to the database.</p>
+
+<p><b>Features:</b> The original feature list were split in 2 CSV with the following features:
+
+    <section><h2>tmdb_5000_movies:</h2>
+        <br>budget,genres,homepage,id,keywords,original_language,original_title,overview,popularity,production_companies,
+        production_countries,release_date,revenue,runtime,spoken_languages,status,tagline,title,vote_average,vote_count</br>
+    </section>
+
+    <section><h2>tmdb_5000_credits:</h2>
+        <br>movie_id,title,cast (JSON list), crew(JSON list)</br>
+    </section>
+
+    <section>
+<p> We ended combining the 2 CSVs files into 1 CSV. The final feature list is as follows:
+<ul class = "joeUl"><li class = "Cam">index</li><li class = "Cam">budget</li><li class = "Cam">genres</li><li class = "Cam">original_title</li><li class = "Cam">popularity</li><li class = "Cam">release_date</li><li class = "Cam">revenue</li><li class = "Cam">runtime</li><li class = "Cam">vote_average</li><li class = "Cam">vote_count</li><li class = "Cam">IMDB</li><li class = "Cam">rotten</li><li class = "Cam">metaC</li><li class = "Cam">cast</li><li class = "Cam">crew</li></ul></p>
+</section>
+
+<p><b>Output:</b> The final result would be an estimation of the approximate revenue of what this movie will bring in.
+
+<h1 class="title">What Happened?</h1>
+
+<p>After finding a data source to work with, we went to work cleaning the data. We parsed some data such as eliminating columns
+    of JSON. We eliminated outliers or rows where there was blank fields or fields where there were extreme outliers. We also
+    removed fields that had 0 budget in making movies.</p>
+
+<p>We split the responsibilities between building the linear prediction algorithm and deployment and frontend design. Jamahl and Joseph
+    worked on seeing if they could manipulate data using Python. Joseph has some experience with databases and data analysis but no experience
+    with Python. Jamahl had little to no experience with Python and databases. Jae had a lot of experience with Web Frameworks, Front end design
+    and application deployment.</p>
+
+
+<p><b>Linear Regression:</b> We were able to use what we learned in class to begin the process of linear regression. </p>
+
+<h2>Correlation</h2>
+{{corr | safe}}
+
+<br>
+
+<img src="../static/img/analysis.png" width="1000" height="1000">
+
+<p>
+<h2>Please pick the independent variable to model:</h2>
+<span class = em>Index, Budget, Popularity, Runtime, Voting Average, Vote Count, IMDB, Rotten, MetaC</span>
+<form method="POST" id="corr"><br><input type="text" id ="indep" placeholder="Independent Variable">
+    <button type="submit" class="btn btn-primary">Submit</button>
+</form>
+</p>
+
+<div id="display"  style="display:none;"></div>
+<div id="fucked" style="display:none;"></div>
+
+<img src="data:image/png;base64,{{ nonLinGraph }}" width="500">
+
+{% endblock %}
