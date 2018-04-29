@@ -3,7 +3,7 @@
 {% block body %}
   <div class="container" style="text-align:center;">
     <h1>Linear Regression</h1>
-    <form method="POST">
+    <form method="POST" id="lin">
       <input type="text" id ="namequery" placeholder="budget">
       <select id="genrequery">
           <option value="Action">Action</option>
@@ -24,16 +24,16 @@
 
   <div class="container" style="text-align:center;">
     <h1>Non-linear Regression</h1>
-    <form method="POST" action="{{ url_for('predict_with_nonlinear')}}">
-      <input type="text" name ="namequery" placeholder="budget">
-      <select name="genrequery">
+    <form method="POST" id="nonlin">
+      <input type="text" id="budg" placeholder="budget">
+      <select id="genre">
           <option value="Action">Action</option>
           <option value="Horror">Horror</option>
           <option value="Mystery">Mystery</option>
           <option value="Romance">Romance</option>
       </select>
-      <input type="text" name ="popquery" placeholder="popularity">
-      <input type="text" name ="votequery" placeholder="vote count">
+      <input type="text" id ="popul" placeholder="popularity">
+      <input type="text" id ="voteq" placeholder="vote count">
       <button type="submit" class="btn btn-primary">Predict</button>
     </form>
   </div>
@@ -45,6 +45,7 @@
     <!-- add any additional regression/prediction models we tried -->
     <!-- <div class="container">
       <h1>Non-linear Regression</h1>
+      action="{{ url_for('predict_with_nonlinear')}}"
       <form method="POST" action="{{ url_for('predict_with_nonlinear')}}">
         <input type="text" name ="namequery" placeholder="budget">
         <input type="text" name ="genrequery" placeholder="genre">

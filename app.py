@@ -14,7 +14,7 @@ Bootstrap(app)
 def index():
     return render_template('index.html')
 
-@app.route('/predict')
+@app.route('/predict', methods=['POST', 'GET'])
 def predict():
     return render_template('predict.html')
 
@@ -22,7 +22,7 @@ def predict():
 @app.route('/project_data', methods=['POST', 'GET'])
 def projectdata():
     
-    nonLinGraph = NonLinear.calculate()
+    nonLinGraph = NonLinear.sendgraph()
     correlate = Linear.correlate().to_frame().to_html()
     
     indep = request.form.get('indep')
@@ -44,10 +44,18 @@ def past():
 
 @app.route('/nonlinear', methods=['POST'])
 def predict_with_nonlinear():
-    # add your alogrithm here
-    print(null)
+     if request.method == 'POST':
+        budget = request.form.get('budget')
+        genre = request.form.get('genre')
+        popularity = request.form.get('popular')
+        vote_cnt = request.form.get('vote')
 
-@app.route('/predict', methods=['POST'])
+        answer = NonLinear.predict(budget, popularity, vote_cnt)
+        print(answer)
+        print(type(answer))
+        return jsonify({'nonlinAns' : round(answer,2)})
+
+@app.route('/linear', methods=['POST'])
 def predict_with_linear():
     if request.method == 'POST':
         budget = request.form.get('budget')
@@ -65,12 +73,13 @@ def predict_with_linear():
         ols = LinearRegression()
         model = ols.fit(x_train, y_train)
 
+
         input = {'budget': float(budget), 'popularity': float(popularity), 'vote_count': float(vote_cnt)}
         X = pd.DataFrame.from_dict(input,orient='index')
         X = X.values.reshape(-1, 3)
 
         answer = model.predict(X)
-        return jsonify({'answer' : answer[0]})
+        return jsonify({'answer' : round(answer[0],2)})
     #return '''<h1>This is budget: {}</h1>
     #              <h1>This is genre: {}</h1>
     #              <h1>This is popularity: {}</h1>

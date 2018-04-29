@@ -1,7 +1,7 @@
 
 $(document).ready(function() {
 
-    $('form').on('submit', function(event) {
+    $('#corr').on('submit', function(event) {
 
         $.ajax({
             data : {
@@ -22,8 +22,15 @@ $(document).ready(function() {
                 }
 
             });
-        
-         $.ajax({
+
+            event.preventDefault();
+
+    });
+
+
+    $('#lin').on('submit', function(event) {
+
+            $.ajax({
             data : {
                 budget : $('#namequery').val(),
                 genre : $('#genrequery').val(),
@@ -31,7 +38,7 @@ $(document).ready(function() {
                 vote : $('#votequery').val()
             },
             type : 'POST',
-            url : '/predict'
+            url : '/linear'
         })
           .done(function(data) {
 
@@ -44,10 +51,42 @@ $(document).ready(function() {
                     $('#fuckedLin').hide();
                 }
 
+
             });
 
-        
+            event.preventDefault();
+
+
+    });
+
+
+        $('#nonlin').on('submit', function(event) {
+
+            $.ajax({
+            data : {
+                budget : $('#budg').val(),
+                genre : $('#genre').val(),
+                popular : $('#popul').val(),
+                vote : $('#voteq').val()
+            },
+            type : 'POST',
+            url : '/nonlinear'
+        })
+            .done(function(data) {
+
+                if (data.error) {
+                    $('#fuckedNonL').text(data.error).show();
+                    $('#displayNonL').hide();
+                }
+                else {
+                    $('#displayNonL').text(data.nonlinAns).show();
+                    $('#fuckedNonL').hide();
+                }
+
+            });
+
         event.preventDefault();
+
 
     });
 
