@@ -1,15 +1,17 @@
 from flask import Flask, render_template, url_for, request, flash, redirect, url_for, session, logging, jsonify
+from wtforms import Form, StringField, TextAreaField, PasswordField, validators
+from sklearn.linear_model import LinearRegression
+from passlib.hash import sha256_crypt
 from flask_bootstrap import Bootstrap
+from functools import wraps
 from flask import request
 from flask_mysqldb import MySQL
-from wtforms import Form, StringField, TextAreaField, PasswordField, validators
-from passlib.hash import sha256_crypt
 import pandas as pd
 import numpy as np
 import scipy
 import NonLinear
 import Linear
-from sklearn.linear_model import LinearRegression
+
 app=Flask(__name__)
 
 # Config MySQL
@@ -28,10 +30,21 @@ Bootstrap(app)
 def index():
     return render_template('index.html')
 
+def is_logged_in(f):
+    @wraps(f)
+    def wrap(*args, **kwargs):
+        if 'logged_in' in session:
+            return f(*args, **kwargs)
+        else:
+            flash('Please login', 'danger')
+            return redirect(url_for('login'))
+    return wrap
+
+
 @app.route('/predict', methods=['POST', 'GET'])
+@is_logged_in
 def predict():
     return render_template('predict.html')
-
 
 @app.route('/project_data', methods=['POST', 'GET'])
 def projectdata():
@@ -64,6 +77,14 @@ class RegisterForm(Form):
         ])
     confirm = PasswordField('Confirm Password')
 
+# Logout
+@app.route('/logout')
+def logout():
+    session.clear()
+    flash('You are now logged out', 'success')
+    return redirect(url_for('login'))
+
+
 # User login
 @app.route('/login', methods=['GET', 'POST'])
 def login():
@@ -71,10 +92,8 @@ def login():
         # Get Form Fields
         username = request.form['username']
         password_candidate = request.form['password']
-
         # Create cursor
         cur = mysql.connection.cursor()
-
         # Get user by username
         result = cur.execute("SELECT * FROM users WHERE username = %s", [username])
 
@@ -90,7 +109,7 @@ def login():
                 session['username'] = username
 
                 flash('You are now logged in', 'success')
-                return redirect(url_for('index'))
+                return redirect(url_for('predict'))
             else:
                 error = 'Invalid login'
                 return render_template('login.html', error=error)
