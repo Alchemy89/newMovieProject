@@ -1,8 +1,3 @@
-<<<<<<< HEAD
-from flask import Flask, render_template, url_for, request, jsonify
-from flask_bootstrap import Bootstrap
-from flask import request
-=======
 from flask import Flask, render_template, url_for, request, flash, redirect, url_for, session, logging, jsonify
 from wtforms import Form, StringField, TextAreaField, PasswordField, validators
 from sklearn.linear_model import LinearRegression
@@ -11,17 +6,11 @@ from flask_bootstrap import Bootstrap
 from functools import wraps
 from flask import request
 from flask_mysqldb import MySQL
->>>>>>> ea8a78d1e481c27ea949cdd2c16ecbda82107387
 import pandas as pd
 import numpy as np
 import scipy
 import NonLinear
 import Linear
-<<<<<<< HEAD
-from sklearn.linear_model import LinearRegression
-app=Flask(__name__)
-
-=======
 
 app=Flask(__name__)
 
@@ -36,27 +25,11 @@ app.config['MYSQL_CURSORCLASS'] = 'DictCursor'
 mysql = MySQL()
 mysql.init_app(app)
 
->>>>>>> ea8a78d1e481c27ea949cdd2c16ecbda82107387
 Bootstrap(app)
 @app.route('/')
 def index():
     return render_template('index.html')
 
-<<<<<<< HEAD
-@app.route('/predict', methods=['POST', 'GET'])
-def predict():
-    return render_template('predict.html')
-
-
-@app.route('/project_data', methods=['POST', 'GET'])
-def projectdata():
-    
-    nonLinGraph = NonLinear.sendgraph()
-    correlate = Linear.correlate().to_frame().to_html()
-    LinGraph = Linear.multiRegChart()
-    LinPValue = Linear.multiRegPValue().to_html(index=False)
-    
-=======
 def is_logged_in(f):
     @wraps(f)
     def wrap(*args, **kwargs):
@@ -78,21 +51,16 @@ def projectdata():
 
     nonLinGraph = NonLinear.sendgraph()
     correlate = Linear.correlate().to_frame().to_html()
+    pvalue = Linear.multiRegPValue().to_html(index=False)
+    multiLinGrph = Linear.multiRegChart()
 
->>>>>>> ea8a78d1e481c27ea949cdd2c16ecbda82107387
     indep = request.form.get('indep')
     if indep:
         LinGraph = Linear.plotChart(str(indep))
         return LinGraph
     else:
-<<<<<<< HEAD
-        return render_template('project_data.html', nonLinGraph=nonLinGraph, corr=correlate, LinGraph = LinGraph, pVal = LinPValue)
+        return render_template('project_data.html', nonLinGraph=nonLinGraph, corr=correlate, multiLinGrph = multiLinGrph, pVal = pvalue)
 
-    
-=======
-        return render_template('project_data.html', nonLinGraph=nonLinGraph, corr=correlate)
-
->>>>>>> ea8a78d1e481c27ea949cdd2c16ecbda82107387
 @app.route('/team')
 def team():
     return render_template('team.html')
@@ -101,8 +69,6 @@ def team():
 def past():
     return render_template('past_movies.html')
 
-<<<<<<< HEAD
-=======
 class RegisterForm(Form):
     name = StringField('Name', [validators.length(min=1, max=50)])
     username = StringField('Username', [validators.length(min=4, max= 20)])
@@ -175,7 +141,6 @@ def register():
         return redirect(url_for('index'))
     return render_template('register.html', form=form)
 
->>>>>>> ea8a78d1e481c27ea949cdd2c16ecbda82107387
 @app.route('/nonlinear', methods=['POST'])
 def predict_with_nonlinear():
      if request.method == 'POST':
@@ -207,10 +172,6 @@ def predict_with_linear():
         ols = LinearRegression()
         model = ols.fit(x_train, y_train)
 
-<<<<<<< HEAD
-
-=======
->>>>>>> ea8a78d1e481c27ea949cdd2c16ecbda82107387
         input = {'budget': float(budget), 'popularity': float(popularity), 'vote_count': float(vote_cnt)}
         X = pd.DataFrame.from_dict(input,orient='index')
         X = X.values.reshape(-1, 3)
@@ -227,9 +188,6 @@ def predict_with_linear():
 
 
 if __name__ == '__main__':
-<<<<<<< HEAD
-=======
     app.secret_key = 'super secret key'
     app.config['SESSION_TYPE'] = 'filesystem'
->>>>>>> ea8a78d1e481c27ea949cdd2c16ecbda82107387
     app.run(debug=True)

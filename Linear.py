@@ -1,12 +1,9 @@
 
 
 import pandas as pd
+import numpy as np
 import statsmodels.api as sm
 import scipy.stats as scp
-<<<<<<< HEAD
-import numpy as np
-=======
->>>>>>> ea8a78d1e481c27ea949cdd2c16ecbda82107387
 from sklearn.linear_model import LinearRegression
 from sklearn.linear_model import LogisticRegression
 from sklearn.feature_selection import RFE
@@ -61,15 +58,7 @@ def modelSummary(indep):
     
     #Remove the id column. It's useless for us
     #numdata = numdata.drop(['id'], axis=1)
-    
-<<<<<<< HEAD
-=======
-    plt.figure()
-    sns.pairplot(numdata)
-    plt.savefig('analysis.png')
-    
->>>>>>> ea8a78d1e481c27ea949cdd2c16ecbda82107387
-    
+        
     
     #Command Prompt asking for input
     columnInd = str(indep)
@@ -80,11 +69,7 @@ def modelSummary(indep):
     model = sm.OLS(y, x).fit()
     return model.summary()
 
-<<<<<<< HEAD
 #modelSummary('budget')
-=======
-modelSummary('budget')
->>>>>>> ea8a78d1e481c27ea949cdd2c16ecbda82107387
 
 
 def plotChart(indep): 
@@ -114,19 +99,7 @@ def plotChart(indep):
     return figdata_png
 
 
-
-
-<<<<<<< HEAD
-
 def multiRegChart():
-    
-=======
-def multipleregress():
-    
-    #IDEAL IS FOR THE INDEPENDENT VARIABLE TO BE CORRELATED WITH THE DEPENDENT VARIABLE BUT NOT 
-    #WITH EACH OTHER
-    #Select the Columns that ONLY Use NUMBERS
->>>>>>> ea8a78d1e481c27ea949cdd2c16ecbda82107387
     dataTrain = pd.read_csv('./tmdb_5000_train.csv')
     dataTest = pd.read_csv('./tmdb_5000_test.csv')    
     
@@ -143,9 +116,6 @@ def multipleregress():
     dataTest = pd.read_csv('./tmdb_5000_test.csv', usecols=['budget','popularity','runtime','vote_average','vote_count','IMDB','rotten','metaC','revenue'])    
     
     
-<<<<<<< HEAD
-    
-
     y_predicted = model.predict(x_train)
     
     plt.figure()
@@ -160,7 +130,10 @@ def multipleregress():
 
 
 def multiRegPValue():
-  
+    
+    #IDEAL IS FOR THE INDEPENDENT VARIABLE TO BE CORRELATED WITH THE DEPENDENT VARIABLE BUT NOT 
+    #WITH EACH OTHER
+    #Select the Columns that ONLY Use NUMBERS
     dataTrain = pd.read_csv('./tmdb_5000_train.csv')
     dataTest = pd.read_csv('./tmdb_5000_test.csv')    
     
@@ -168,31 +141,19 @@ def multiRegPValue():
     y_train = dataTrain['revenue']
     
     x_test = dataTest[['budget', 'popularity', 'vote_count']].values.reshape(-1,3)
-=======
-    names = dataTrain.columns
-    array = dataTrain.values
-    X = array[:,0:8]
-    Y = array[:,2]
-    # feature extraction
-    model = LinearRegression()
-    rfe = RFE(model, 4)
-    fit = rfe.fit(X, Y)
-    print(fit.n_features_) 
-    print(fit.support_)  
-    print(fit.ranking_)  
-    ranks = fit.support_
-    fields = np.where(ranks == True)
-    ranks = list()
-    for ind in np.nditer(fields):
-        ranks.append(names[ind]) 
+    y_test = dataTest['revenue']
+
+    ols = LinearRegression()
+    model = ols.fit(x_train, y_train)
     
-    print(ranks)
+    dataTrain = pd.read_csv('./tmdb_5000.csv', usecols=['budget','popularity','runtime','vote_average','vote_count','IMDB','rotten','metaC','revenue'])
+    dataTest = pd.read_csv('./tmdb_5000_test.csv', usecols=['budget','popularity','runtime','vote_average','vote_count','IMDB','rotten','metaC','revenue'])    
     
+
     x_train = dataTrain[['rotten', 'IMDB', 'vote_average']].values.reshape(-1,3)    
     y_train = dataTrain['revenue']
     
     x_test = dataTest[['rotten', 'IMDB', 'vote_average']].values.reshape(-1,3)
->>>>>>> ea8a78d1e481c27ea949cdd2c16ecbda82107387
     y_test = dataTest['revenue']
 
     ols = LinearRegression()
@@ -200,7 +161,7 @@ def multiRegPValue():
     params = np.append(model.intercept_,model.coef_)
     
     predictions = model.predict(x_train)
-    print(predictions)
+    #print(predictions)
     
     newX = pd.DataFrame({"Constant":np.ones(len(x_test))}).join(pd.DataFrame(x_test))
     MSE = (sum((y_train-predictions)**2))/(len(newX)-len(newX.columns))
@@ -222,21 +183,12 @@ def multiRegPValue():
 
     myDF3 = pd.DataFrame()  
     myDF3["Coefficients"],myDF3["Standard Errors"],myDF3["t values"],myDF3["Probabilites"] = [params,sd_b,ts_b,p_values]
-<<<<<<< HEAD
     
     return myDF3
-=======
-    print(myDF3)
 
-    y_predicted = model.predict(x_train)
-    
-    plt.scatter(y_train, y_predicted)
-    plt.plot(y_train,y_predicted,'o')
-    plt.show()
     
     
     #print(model.predict(x_test)[0:10])
 #UNCOMMENT TO RUN
 #multipleregress()
 
->>>>>>> ea8a78d1e481c27ea949cdd2c16ecbda82107387
