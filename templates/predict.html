@@ -1,7 +1,25 @@
 {% extends 'layout.html' %}
+<<<<<<< HEAD
 
 {% block body %}
   <div class="container" style="text-align:center;">
+=======
+{% block body %}
+<div class="container predict">
+  <div class="container" style="text-align:center;">
+    <h4> <span> Welcome {{session.username}} </span></h4>
+    <a href="#" id="show-instructions">How to Use</a>
+    <div class="container" >
+      <p class="no-show" id="instructions">Enter a budget, select a genre, forecasted popularity, and expected vote count.</p>
+    </div>
+    <script>
+    $(document).ready(function(){
+      $('#show-instructions').click(function() {
+        $('#instructions').toggleClass('seen');
+      });
+    });
+    </script>
+>>>>>>> ea8a78d1e481c27ea949cdd2c16ecbda82107387
     <h1>Linear Regression</h1>
     <form method="POST" id="lin">
       <input type="text" id ="namequery" placeholder="budget">
@@ -13,6 +31,7 @@
       </select>
       <input type="text" id ="popquery" placeholder="popularity">
       <input type="text" id ="votequery" placeholder="vote count">
+<<<<<<< HEAD
       <button type="submit" class="btn btn-primary">Predict</button>
     </form>
   </div>
@@ -22,6 +41,15 @@
 <div id="fuckedLin" class="alert alert-fucked" role="alert" style="display:none;"></div>
 
 
+=======
+      <button type="submit" class="btn btn-primary" href="/add_article">Predict</button>
+    </form>
+  </div>
+
+<div id="displayLin" class="alert alert-success" role="alert" style="display:none;"></div>
+<div id="fuckedLin" class="alert alert-fucked" role="alert" style="display:none;"></div>
+
+>>>>>>> ea8a78d1e481c27ea949cdd2c16ecbda82107387
   <div class="container" style="text-align:center;">
     <h1>Non-linear Regression</h1>
     <form method="POST" id="nonlin">
@@ -34,9 +62,17 @@
       </select>
       <input type="text" id ="popul" placeholder="popularity">
       <input type="text" id ="voteq" placeholder="vote count">
+<<<<<<< HEAD
       <button type="submit" class="btn btn-primary">Predict</button>
     </form>
   </div>
+=======
+      <button type="submit" class="btn btn-primary" href="/add_article">Predict</button>
+    </form>
+  </div>
+</div>
+
+>>>>>>> ea8a78d1e481c27ea949cdd2c16ecbda82107387
 
 <div id="displayNonL" class="alert alert-success" role="alert" style="display:none;"></div>
 <div id="fuckedNonL" class="alert alert-fucked" role="alert" style="display:none;"></div>

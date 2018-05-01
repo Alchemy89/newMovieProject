@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 <nav class="navbar navbar-inverse" style="border-radius: 0!important;">
+=======
+<nav class="navbar navbar-inverse" style="border-radius: 0!important; margin-bottom: 0!important">
+>>>>>>> ea8a78d1e481c27ea949cdd2c16ecbda82107387
   <div class="container-fluid">
   <div class="navbar-header">
     <ul class="nav navbar-nav">
@@ -6,18 +10,33 @@
         <a class="dropdown-toggle" data-toggle="dropdown" href="#">
         <span class="glyphicon glyphicon-menu-hamburger" style="color: #ffff;"></span></a>
         <ul class="dropdown-menu">
+<<<<<<< HEAD
           <li><a href="#">Login</a></li>
           <li><a href="#">Register</a></li>
+=======
+          {% if session.logged_in %}
+            <li><a href="/logout">Logout</a></li>
+            <li><a href="/predict">Run a Simulation</a></li>
+          {% else %}
+            <li><a href="/login">Login</a></li>
+            <li><a href="/register">Register</a></li>
+          {% endif %}
+>>>>>>> ea8a78d1e481c27ea949cdd2c16ecbda82107387
         </ul>
       </li>
     </ul>
     </div>
     <ul class="nav navbar-nav" style="float:right!important;">
       <li><a href="/" style="color: #ffff;">Home</a></li>
+<<<<<<< HEAD
       <li><a href="/predict" style="color: #ffff;">Prediction</a></li>
       <li><a href="/team" style="color: #ffff;">Team</a></li>
       <li><a href="/project_data" style="color: #ffff;">Project Breakdown</a></li>
       <li><a href="/past_movies" style="color: #ffff;">Past Movies</a></li>
+=======
+      <!-- <li><a href="/predict" style="color: #ffff;">Prediction</a></li> -->
+      <li><a href="/project_data" style="color: #ffff;">Project Breakdown</a></li>
+>>>>>>> ea8a78d1e481c27ea949cdd2c16ecbda82107387
       <li><a class="navbar-brand" href="/" style="color: #ffff; margin-left: 10px;">J#</a></li>
     </ul>
   </div>

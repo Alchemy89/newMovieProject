@@ -1,6 +1,10 @@
 {% extends 'layout.html' %}
 {% block body %}
+<<<<<<< HEAD
 
+=======
+<div class="container solid">
+>>>>>>> ea8a78d1e481c27ea949cdd2c16ecbda82107387
 
 <h1 class="title">Journey to Find an adequate Movie Profit Prediction</h1>
 <h2 class="desc">The Countless Hours we spent to finally realize that this was harder than we thought.</h2>
@@ -45,11 +49,14 @@
 
 <p><b>Linear Regression:</b> We were able to use what we learned in class to begin the process of linear regression. </p>
 
+<<<<<<< HEAD
 <p>We also took a slight detour where created a script that added all the reviews for all 5000 movies. The review sources
     are from Rotten Tomatoes, MetaCritic and IMDB. We did this to find if there was a relationship between the reviews and movie success.
 Unfortunately, the work was for naught as we found no correlation between the reviews and movie success. </p>
 
 
+=======
+>>>>>>> ea8a78d1e481c27ea949cdd2c16ecbda82107387
 <h2>Correlation</h2>
 {{corr | safe}}
 
@@ -68,6 +75,7 @@ Unfortunately, the work was for naught as we found no correlation between the re
 <div id="display"  style="display:none;"></div>
 <div id="fucked" style="display:none;"></div>
 
+<<<<<<< HEAD
 
 <p>Our conclusion from this is that there were 3 obscure columns that correlated with higher revenue in movies:
     <ul class="joeUL"> <li class="Cam">Budget</li><li class="Cam">Popularity</li><li class="Cam">Vote Count</li></ul></p>
@@ -98,5 +106,9 @@ Results also showed a lack of correlation. </p>
 
 
 <img src="data:image/png;base64,{{ nonLinGraph }}" width="500">
+=======
+<img src="data:image/png;base64,{{ nonLinGraph }}" width="500">
+</div>
+>>>>>>> ea8a78d1e481c27ea949cdd2c16ecbda82107387
 
 {% endblock %}

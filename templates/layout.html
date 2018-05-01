@@ -3,9 +3,31 @@
 <head>
     <meta charset="utf-8">
     <title>Movie Algorithm</title>
+<<<<<<< HEAD
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <link href="https://fonts.googleapis.com/css?family=Cormorant+Garamond|Tajawal" rel="stylesheet">
     <style>
+=======
+    <!-- jQuery library -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="{{ url_for('static', filename='js/printRes.js') }}"></script>
+    <!-- Latest compiled JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.10/css/all.css" integrity="sha384-+d0P83n9kaQMCwj8F4RJB66tzIwOKmrdb46+porD/OvrJ+37WqIM7UoBtwHO6Nlg" crossorigin="anonymous">
+    <link href="https://fonts.googleapis.com/css?family=Cormorant+Garamond|Tajawal" rel="stylesheet">
+    <script type="text/javascript" src="js/jquery.js"></script>
+    <style>
+      body {
+        background-image: url('https://i2.wp.com/lifeatthemovies.com/wp-content/uploads/2017/09/2000.png?zoom=2&resize=672%2C372');
+      }
+
+      .solid {
+        background-color: whitesmoke;
+        padding: 100px;
+        margin-bottom: 50px;
+      }
+>>>>>>> ea8a78d1e481c27ea949cdd2c16ecbda82107387
 
         .column {
             float: left;
@@ -21,7 +43,10 @@
         }
 
         .title {
+<<<<<<< HEAD
 
+=======
+>>>>>>> ea8a78d1e481c27ea949cdd2c16ecbda82107387
             font-family: 'Tajawal', serif;
             font-style: normal;
             font-weight: 700;
@@ -46,7 +71,10 @@
             font-weight: bold;
         }
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> ea8a78d1e481c27ea949cdd2c16ecbda82107387
         p {
             display: block;
             font-size: 18px;
@@ -57,7 +85,10 @@
 
         .em {
             font-style: italic;
+<<<<<<< HEAD
 
+=======
+>>>>>>> ea8a78d1e481c27ea949cdd2c16ecbda82107387
         }
 
         section {
@@ -76,11 +107,66 @@
             content: url({{url_for('static', filename='img/cambullet.png')}});font-size: 10px;
         }
 
+<<<<<<< HEAD
+=======
+        #hero-container {
+          position: relative;
+          text-align: center;
+          color: white;
+          height: 150px;
+        }
+
+        .centered {
+          position: absolute;
+          top: 50%;
+          left: 50%;
+          transform: translate(-50%, -50%);
+        }
+
+        .hero-img {
+          -webkit-filter: grayscale(100%); /* Safari 6.0 - 9.0 */
+          filter: grayscale(100%);
+        }
+
+        .prof-img {
+          width: 40%;
+          border-radius: 100px;
+        }
+
+        .team-section-header {
+          text-align: center;
+        }
+
+        .copy-fa {
+          font-size: 50px;
+          float: right;
+          padding: 40px;
+        }
+
+        .jumbotron {
+          border-radius: 0px!important;
+        }
+
+        .predict {
+          padding-top: 20px;
+          padding-bottom: 20px;
+          background-color: whitesmoke;
+        }
+
+        .seen {
+          display: block!important;
+        }
+
+        .no-show {
+          display: none;
+        }
+>>>>>>> ea8a78d1e481c27ea949cdd2c16ecbda82107387
     </style>
 </head>
 <body>
 {% include 'partials/_navbar.html' %}
 <div class="container">
+<<<<<<< HEAD
     {% block body %}{% endblock %}
 </div>
 <!-- jQuery library -->
@@ -88,5 +174,18 @@
 <script src="{{ url_for('static', filename='js/printRes.js') }}"></script>
 <!-- Latest compiled JavaScript -->
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+=======
+  {% include 'partials/_messages.html' %}
+</div>
+<div class="container">
+  {% block body %}{% endblock %}
+</div>
+
+<script>
+$( ".alert" ).fadeOut( 2000, function() {
+    // Animation complete.
+  });
+</script>
+>>>>>>> ea8a78d1e481c27ea949cdd2c16ecbda82107387
 </body>
 </html>
