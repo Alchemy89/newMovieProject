@@ -1,0 +1,63 @@
+{% extends 'layout.html' %}
+{% block body %}
+ 
+THIS IS A TEST 
+
+WORK ON COMPARE2 or somethign for search
+
+COPY FROM COMPARE2 AND PASTE HERE!!
+
+
+
+    <h1>Film Search Engine</h1>
+
+<form method="POST" action="{{ url_for('findMovie')}}">
+      <input type="text" name ="namequery" placeholder="name">
+
+      <input type="text" name ="budgetquery" placeholder="budget">
+
+      <select name="genrequery">
+         <option value="">Genre</option>
+
+          <option value="Action">Action</option>
+          <option value="Horror">Horror</option>
+          <option value="Mystery">Mystery</option>
+          <option value="Romance">Romance</option>
+          <option value="Thriller">Thriller</option>
+          <option value="Fantasy">Fantasy</option>
+          <option value="Science Fiction">Science Fiction</option>
+    </select>
+
+    <select name ="datequery">
+                <option value="">Month</option>
+
+        <option value="-01-">January</option>
+          <option value="-02-">February</option>
+          <option value="-03-">March</option>
+          <option value="-04-">April</option>
+          <option value="-05-">May</option>
+          <option value="-06-">June</option>
+          <option value="-07-">July</option>
+          <option value="-08-">August</option>
+          <option value="-09-">September</option>
+          <option value="-10-">October</option>
+          <option value="-11-">November</option>
+          <option value="-12-">December</option>
+
+
+
+<
+
+
+      </select>
+      <input type="text" name ="grossquery" placeholder="revenue">
+
+      <button type="submit" class="btn btn-primary">Search</button>
+
+
+
+    </form>
+
+
+
+{% endblock %}
