@@ -11,6 +11,8 @@ import numpy as np
 import scipy
 import NonLinear
 import Linear
+import csv
+
 
 app=Flask(__name__)
 
@@ -183,7 +185,100 @@ def predict_with_linear():
     #              <h1>Prediction is: {}</h1>
     #              '''.format(budget, genre, popularity, vote_cnt, (float(answer)))
 
+    
+    
+    
+    #------------------------------Jamahl Reynolds' part----Below-----------
+    @app.route('/new_project', methods =['POST'])
 
+def enterproject():
+    myTitle = request.form.get('namequery')
+    myDate = request.form.get('datequery')
+    myGenre = request.form.get('genrequery')
+    myBudget = request.form.get('budgetquery')
+    myRevenue = request.form.get('grossquery')
+
+
+    fieldnames = ["original_title", "release_date", "budget", "revenue", "genres"] #mine 
+
+    with open('future_movies.csv', 'a', newline='') as f:
+    
+  
+        thewriter = csv.DictWriter(f, fieldnames=fieldnames, delimiter = '\t')  
+        
+        thewriter.writerow({"original_title": myTitle,"release_date": myDate,"budget": myBudget, "revenue": myRevenue, "genres": myGenre})
+    
+    return '''<h2>Inputs recieved</h2>'''
+
+
+@app.route('/findproject', methods =['POST', 'GET'])
+
+def findproject():
+    myTitle = request.form.get('namequery')
+    myGenre = request.form.get('genrequery')
+    myBudget = request.form.get('budgetquery')
+
+
+    with open('future_movies.csv') as file:
+        reader = csv.reader(file, delimiter='\t')
+        for row in reader:
+        
+            if myTitle.lower() in row[0].lower():
+
+                if myBudget in row[2]: # and int(row[2]) >= 0: 
+            
+                    if myGenre.lower() in row[4].lower():
+        
+                         return ('''<h1>Project Found </h1> 
+                                    <h2>------------------------</h2>
+                                    <h3>Name: {}</h3> 
+                                    <h3>Budget: {}</h3>
+                                    <h3>Genre: {}</h3>
+                                    <h2>------------------------</h2>'''.format(row[0],  row[2], row[4]))
+                    else:
+                        return '''<h1> Project Not In The System </h2>'''
+
+@app.route('/film_search', methods =['POST'])
+def findMovie():
+    found = 0
+    myTitle = request.form.get('namequery')
+    myDate = request.form.get('datequery')
+    myGenre = request.form.get('genrequery')
+    myBudget = request.form.get('budgetquery')
+    myRevenue = request.form.get('grossquery')
+
+    with open('new_movie_list1.csv') as file:
+        reader = csv.reader(file, delimiter='\t')
+        for row in reader:
+        
+            if myTitle.lower() in row[0].lower():
+
+            
+                if myDate in row[1]:
+                    
+                    
+                    if myBudget in row[2]: # and int(row[2]) >= 0: 
+                    
+                        if myRevenue in row[3]:
+            
+                            if myGenre.lower() in row[4].lower():
+        
+                            #print( "\n\n------Entire Row- of Movie----\n",found, ")",row,"\n Bits of Row \n")
+                                print( "\n",found, ")",row,"")
+
+                                return ('''<h1> Movie Found </h1> 
+                                    <h2>------------------------</h2>
+                                    <h3>Name: {}</h3> 
+                                    <h3>Date: {}</h3>
+                                    <h3>Budget: {}</h3>
+                                    <h3>Revenue: {}</h3>
+                                    <h3>Genre: {}</h3>
+                                    <h2>------------------------</h2>
+
+'''.format(row[0], row[1], row[2], row[3], myGenre))
+     #----------------------------------------Jamahl Reynolds' part----Above-----------
+
+  
 
 if __name__ == '__main__':
     app.secret_key = 'super secret key'
