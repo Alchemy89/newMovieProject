@@ -188,7 +188,6 @@ def predict_with_linear():
     
     
     
-    #------------------------------Jamahl Reynolds' part----Below-----------
     @app.route('/new_project', methods =['POST'])
 
 def enterproject():
@@ -276,7 +275,6 @@ def findMovie():
                                     <h2>------------------------</h2>
 
 '''.format(row[0], row[1], row[2], row[3], myGenre))
-     #----------------------------------------Jamahl Reynolds' part----Above-----------
 
   
 
