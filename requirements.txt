@@ -214,7 +214,7 @@ tornado==4.5.3
 traitlets==4.3.2
 typing==3.6.2
 unicodecsv==0.14.1
-urllib3==1.12
+urllib3==1.26.5
 vine==1.1.4
 virtualenv==15.1.0
 virtualenv-clone==0.3.0
